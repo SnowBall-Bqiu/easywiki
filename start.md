@@ -18,7 +18,6 @@
 
 [Github][https://github.com/SnowBall-Bqiu/easywiki]
 
-[下载](https://easywiki.bqiu.net/download/v1.0.0.tar.gz)
 ---
 ## 3.部署
 目前我们的部署方式有两种，一种是纯HTML部署，一种是PHP部署。具体的您可以根据实际来选择。
