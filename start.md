@@ -16,7 +16,7 @@
 ## 2.下载
 您可以访问我们的github仓库，下载我们的代码。或者点击下面的链接下载v1.0.0版本。
 
-[Github]([https://easywiki.bqiu.net/download/v1.0.0.tar.gz](https://github.com/SnowBall-Bqiu/easywiki))
+[Github][https://github.com/SnowBall-Bqiu/easywiki]
 
 [下载](https://easywiki.bqiu.net/download/v1.0.0.tar.gz)
 ---
