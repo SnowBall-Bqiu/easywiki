@@ -14,11 +14,11 @@
 ---
 
 ## 2.下载
-您可以访问我们的github仓库，下载我们的代码。或者点击下面的链接下载v1.0.0版本。（未来会开源暂时链接没有放出）
+您可以访问我们的github仓库，下载我们的代码。或者点击下面的链接下载v1.0.0版本。
 
-[本站下载链接](https://easywiki.bqiu.net/download/v1.0.0.tar.gz)
+[Github]([https://easywiki.bqiu.net/download/v1.0.0.tar.gz](https://github.com/SnowBall-Bqiu/easywiki))
 
-[下载]()
+[下载](https://easywiki.bqiu.net/download/v1.0.0.tar.gz)
 ---
 ## 3.部署
 目前我们的部署方式有两种，一种是纯HTML部署，一种是PHP部署。具体的您可以根据实际来选择。
