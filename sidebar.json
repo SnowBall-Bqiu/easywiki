@@ -4,7 +4,15 @@
     "link": "home.md"
   },
   {
-    "title": "示范",
+    "title": "快速部署",
+    "link": "start.md"
+  },
+{ 
+  "title": "使用教程",
+  "link": "do.md"
+},
+  {
+    "title": "示例文档",
     "children": [
       {
         "title": "API 接口",
