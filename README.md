@@ -23,3 +23,6 @@
 1.  Click on the navigation menu on the left to browse different documents. (ง •̀_•́)ง
 2.  The content area will render Markdown content in real-time for easy reading!
     For detailed deployment information and other information, please visit our website [easyWIKI](https://easywiki.bqiu.net/)!
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=SnowBall-Bqiu/easywiki&type=Date)](https://www.star-history.com/#SnowBall-Bqiu/easywiki&Date)
