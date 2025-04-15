@@ -12,3 +12,6 @@
 
 1. 点击左侧导航菜单浏览不同文档
 2. 内容区将显示渲染后的Markdown内容
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=SnowBall-Bqiu/easywiki&type=Date)](https://www.star-history.com/#SnowBall-Bqiu/easywiki&Date)
