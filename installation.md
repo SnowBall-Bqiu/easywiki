@@ -1,23 +1,13 @@
-# 安装指南
+# 开发指南
 
-## 系统要求
-
-- Node.js 16+ 或更高版本
-- npm 8+ 或 yarn 1.22+
-- 现代浏览器（Chrome, Firefox, Edge等）
-
-## 安装步骤
+## 开发步骤
 
 1. 克隆仓库
 ```bash
-git clone https://github.com/your-repo/wiki.git
+git clone https://github.com/SnowBall-Bqiu/easywiki.git
 ```
 
-2. 安装依赖
-```bash
-cd wiki
-npm install
-```
+2. 安装tailwindcss
 
 3. 启动开发服务器
 ```bash
@@ -32,8 +22,13 @@ npm run dev
   {"title": "首页", "link": "home.md"}
 ]
 ```
+## tailwindcss的相关开发配置
+**我们已经创建了标准的tailwindcss配置文件，无需手动配置。您可以点击这个链接前往Github进行下载tailwind.config.js：**
 
-## 常见问题
+[github](https://github.com/SnowBall-Bqiu/easywiki/releases/download/v1.0.0)
 
-Q: 如何添加新文档？
-A: 只需在项目根目录创建新的.md文件，并在sidebar.json中添加对应链接即可。
+> 您只需要将下载的文件复制到您的项目根目录，安装好需要的项目即可。
+--- 
+**完整的开发环境请下载easywiki-vx.x.x-dev.7z**
+
+[完整开发环境](https://github.com/SnowBall-Bqiu/easywiki/releases/tag/v1.0.0)

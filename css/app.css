@@ -1,285 +1,660 @@
-    @import "tailwindcss";
-        /* 基础样式 */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-        }
+@import "tailwindcss";
 
-        /* 触发点和切换按钮样式优化 */
-        #menu-toggle, #toc-toggle, #menu-trigger, #toc-trigger {
-            border: none;
-        }
-        #menu-toggle svg, #toc-toggle svg, #menu-trigger svg, #toc-trigger svg {
-            stroke: white;
-        }
-        #menu-toggle:hover, #toc-toggle:hover, #menu-trigger:hover, #toc-trigger:hover {
-            background: linear-gradient(to right, #3b82f6, #1d4ed8);
-        }
-        #menu-toggle:active, #toc-toggle:active, #menu-trigger:active, #toc-trigger:active {
-            transform: scale(0.95);
-        }
+/* 顶部导航栏样式 */
+#top-nav {
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.95);
+}
 
-        /* 手机端样式 */
-        @media (max-width: 768px) {
-            /* 左侧导航栏 */
-            #sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-                position: fixed;
-                top: 0;
-                height: 100%;
-                z-index: 50;
-                width: 80%;
-                max-width: 250px;
-                border-radius: 0 12px 12px 0;
-                background: linear-gradient(145deg, #ffffff, #f1f5f9);
-            }
-            #sidebar.open {
-                transform: translateX(0);
-            }
-            #menu-toggle {
-                display: block;
-            }
+#header-logo img {
+    transition: transform 0.3s ease;
+}
 
-            /* 右侧目录 */
-            #toc {
-                position: fixed;
-                right: 0;
-                top: 0;
-                width: 70%;
-                max-width: 250px;
-                height: 100%;
-                transform: translateX(100%);
-                transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-                z-index: 50;
-                border-radius: 12px 0 0 12px;
-                background: linear-gradient(145deg, #ffffff, #f1f5f9);
-            }
-            #toc.open {
-                transform: translateX(0);
-            }
-            #toc-toggle {
-                display: block;
-            }
+#header-logo img:hover {
+    transform: scale(1.05);
+}
 
-            /* 触发点初始显示 */
-            #menu-trigger, #toc-trigger {
-                display: block;
-            }
+#header-buttons a {
+    color: #4B5563;
+    transition: all 0.3s ease;
+}
 
-            /* 优化目录和导航栏内容的样式 */
-            #sidebar-content, #toc-content {
-                padding: 0.5rem;
-            }
-            #sidebar-content a, #toc-content a {
-                font-size: 0.9rem;
-                line-height: 1.5rem;
-                padding: 0.5rem;
-                border-radius: 8px;
-            }
-            #sidebar-content ul.hidden {
-                display: none;
-            }
+#header-buttons a:hover {
+    color: #2563EB;
+    background-color: #EFF6FF;
+}
 
-            /* 调整标题样式 */
-            #sidebar h2, #toc h2 {
-                font-size: 1rem;
-                padding: 0.5rem;
-                background: linear-gradient(to right, #eff6ff, #dbeafe);
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            }
+#header-buttons svg {
+    transition: transform 0.3s ease;
+}
 
-            /* 调整内容区 */
-            #content {
-                padding: 1rem;
-            }
+#header-buttons a:hover svg {
+    transform: scale(1.1);
+}
 
-            /* 确保内容区不被遮挡 */
-            main {
-                transition: margin-left 0.3s ease, margin-right 0.3s ease, filter 0.3s ease;
-            }
-            #sidebar.open ~ main, #toc.open ~ main {
-                margin-left: 0;
-                margin-right: 0;
-                filter: blur(2px);
-            }
-        }
+/* 基础样式 */
+/* 触发点和切换按钮样式优化 */
+#menu-toggle, #toc-toggle, #menu-trigger, #toc-trigger {
+    border: none; /* 去除按钮边框 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+}
+#menu-toggle svg, #toc-toggle svg, #menu-trigger svg, #toc-trigger svg {
+    stroke: white; /* 设置图标颜色为白色 */
+    transition: transform 0.3s ease; /* 图标旋转动画 */
+}
+#menu-toggle:hover, #toc-toggle:hover, #menu-trigger:hover, #toc-trigger:hover {
+    background: linear-gradient(to right, #3b82f6, #1d4ed8); /* 鼠标悬停时的渐变背景 */
+    transform: translateY(-2px); /* 悬停时上移效果 */
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3); /* 增强阴影 */
+}
+#menu-toggle:active, #toc-toggle:active, #menu-trigger:active, #toc-trigger:active {
+    transform: scale(0.95); /* 点击时缩小按钮 */
+}
 
-        /* Markdown 样式优化 */
-        #content h1 {
-            font-size: 1.875rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin: 1.5rem 0;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
-            position: relative;
-        }
-        #content h1::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(to right, #3b82f6, #1d4ed8);
-            transition: width 0.3s ease;
-        }
-        #content h1:hover::after {
-            width: 100px;
-        }
-        #content h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #334155;
-            margin: 1.25rem 0;
-        }
-        #content h3 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: #334155;
-            margin: 1rem 0;
-        }
-        #content p {
-            font-size: 1rem;
-            line-height: 1.75rem;
-            color: #475569;
-            margin: 1rem 0;
-        }
-        #content a {
-            color: #3b82f6;
-            transition: color 0.2s;
-        }
-        #content a:hover {
-            color: #1d4ed8;
-        }
-        #content pre {
-            background: #1e293b;
-            color: #f8fafc;
-            padding: 1.25rem;
-            border-radius: 12px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.875rem;
-            margin: 1.5rem 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            white-space: pre-wrap;
-            overflow-x: auto;
-            transition: transform 0.3s ease;
-        }
-        #content pre:hover {
-            transform: translateY(-2px);
-        }
-        #content code:not(pre code) {
-            background-color: #f1f5f9;
-            color: #1e293b;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-        }
-        #content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-            font-size: 0.875rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        #content th, #content td {
-            border: 1px solid #e2e8f0;
-            padding: 0.75rem;
-            text-align: left;
-        }
-        #content th {
-            background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
-            font-weight: 600;
-            color: #334155;
-        }
-        #content td {
-            color: #475569;
-        }
-        #content blockquote {
-            border-left: 4px solid #22c55e;
-            background-color: #f0fdf4;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            color: #475569;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        #content blockquote:hover {
-            transform: translateX(5px);
-        }
-        #content ul, #content ol {
-            padding-left: 1.5rem;
-            margin: 1rem 0;
-        }
-        #content ul {
-            list-style-type: disc;
-        }
-        #content ol {
-            list-style-type: decimal;
-        }
-        #toc a {
-            transition: color 0.2s;
-        }
-        #toc a:hover {
-            color: #3b82f6;
-        }
+/* 手机端样式 */
+@media (max-width: 768px) {
+    /* 左侧导航栏 */
+    #sidebar {
+        transform: translateX(-100%); /* 初始隐藏导航栏 */
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* 平滑动画 */
+        position: fixed; /* 固定位置 */
+        top: 0;
+        height: 100%; /* 占满屏幕高度 */
+        z-index: 50; /* 设置层级 */
+        width: 85%; /* 宽度为屏幕的 85% */
+        max-width: 280px; /* 最大宽度为 280px */
+        border-radius: 0 16px 16px 0; /* 增大圆角样式 */
+        background: linear-gradient(145deg, #ffffff, #f8fafc); /* 调整背景渐变 */
+        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    }
+    #sidebar.open {
+        transform: translateX(0); /* 打开导航栏 */
+    }
+    #menu-toggle {
+        display: block; /* 显示菜单按钮 */
+    }
 
-        /* 手机端阅读优化 */
-        @media (max-width: 768px) {
-            #content h1 {
-                font-size: 1.5rem;
-                margin: 1rem 0;
-                padding-bottom: 0.3rem;
-            }
-            #content h2 {
-                font-size: 1.25rem;
-                margin: 0.75rem 0;
-            }
-            #content h3 {
-                font-size: 1.1rem;
-                margin: 0.5rem 0;
-            }
-            #content p {
-                font-size: 0.95rem;
-                line-height: 1.6rem;
-                margin: 0.75rem 0;
-            }
-            #content pre {
-                font-size: 0.8rem;
-                padding: 0.75rem;
-                margin: 1rem 0;
-            }
-            #content code:not(pre code) {
-                font-size: 0.85rem;
-                padding: 0.15rem 0.3rem;
-            }
-            #content table {
-                font-size: 0.8rem;
-            }
-            #content th, #content td {
-                padding: 0.5rem;
-            }
-            #content blockquote {
-                padding: 0.75rem;
-                margin: 1rem 0;
-            }
-            #content ul, #content ol {
-                padding-left: 1.25rem;
-                margin: 0.75rem 0;
-            }
-        }
+    /* 右侧目录 */
+    #toc {
+        position: fixed; /* 固定位置 */
+        right: 0;
+        top: 0;
+        width: 85%; /* 宽度为屏幕的 85% */
+        max-width: 280px; /* 最大宽度为 280px */
+        height: 100%; /* 占满屏幕高度 */
+        transform: translateX(100%); /* 初始隐藏目录 */
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* 平滑动画 */
+        z-index: 50; /* 设置层级 */
+        border-radius: 16px 0 0 16px; /* 增大圆角样式 */
+        background: linear-gradient(145deg, #ffffff, #f8fafc); /* 调整背景渐变 */
+        box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    }
+    #toc.open {
+        transform: translateX(0); /* 打开目录 */
+    }
+    #toc-toggle {
+        display: block; /* 显示目录按钮 */
+    }
 
-        /* 高对比度模式 */
-        @media (max-width: 768px) and (prefers-contrast: high) {
-            #content p, #content li, #content td {
-                color: #1e293b;
-            }
-            #content pre {
-                background-color: #1e293b;
-                color: #ffffff;
-            }
-        }
+    /* 触发点初始显示 */
+    #menu-trigger, #toc-trigger {
+        display: block; /* 显示触发按钮 */
+    }
+
+    /* 优化目录和导航栏内容的样式 */
+    #sidebar-content, #toc-content {
+        padding: 0.75rem; /* 增加内边距 */
+    }
+    #sidebar-content a, #toc-content a {
+        font-size: 0.95rem; /* 增大字体大小 */
+        line-height: 1.6rem; /* 增加行高 */
+        padding: 0.6rem; /* 增加内边距 */
+        border-radius: 10px; /* 增大圆角样式 */
+        transition: all 0.3s ease; /* 添加过渡效果 */
+    }
+    #sidebar-content ul.hidden {
+        display: none; /* 隐藏子菜单 */
+    }
+
+    /* 调整标题样式 */
+    #sidebar h2, #toc h2 {
+        font-size: 1rem; /* 标题字体大小 */
+        padding: 0.5rem; /* 内边距 */
+        margin-top: 0.5rem; /* 顶部外边距 */
+        background: linear-gradient(to right, #eff6ff, #dbeafe); /* 背景渐变 */
+        border-radius: 8px; /* 圆角样式 */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 阴影效果 */
+    }
+    #sidebar h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1rem;
+    }
+
+    /* 调整内容区 */
+    #content {
+        padding: 1rem; /* 内边距 */
+    }
+
+    /* 确保内容区不被遮挡 */
+    main {
+        transition: margin-left 0.3s ease, margin-right 0.3s ease, filter 0.3s ease; /* 平滑动画 */
+    }
+    #sidebar.open ~ main, #toc.open ~ main {
+        margin-left: 0; /* 重置左边距 */
+        margin-right: 0; /* 重置右边距 */
+        filter: blur(2px); /* 模糊效果 */
+    }
+}
+
+/* Markdown 样式优化 */
+#content h1 {
+    font-size: 1.875rem; /* 一级标题字体大小 */
+    font-weight: 700; /* 字体加粗 */
+    color: #1e293b; /* 字体颜色 */
+    margin: 1.5rem 0; /* 外边距 */
+    border-bottom: 2px solid #e2e8f0; /* 底部边框 */
+    padding-bottom: 0.5rem; /* 内边距 */
+    position: relative; /* 相对定位 */
+}
+#content h1::after {
+    content: ''; /* 添加伪元素 */
+    position: absolute; /* 绝对定位 */
+    bottom: -2px; /* 距离底部 */
+    left: 0; /* 距离左侧 */
+    width: 50px; /* 初始宽度 */
+    height: 2px; /* 高度 */
+    background: linear-gradient(to right, #3b82f6, #1d4ed8); /* 背景渐变 */
+    transition: width 0.3s ease; /* 平滑动画 */
+}
+#content h1:hover::after {
+    width: 100px; /* 鼠标悬停时宽度增加 */
+}
+#content h2 {
+    font-size: 1.5rem; /* 二级标题字体大小 */
+    font-weight: 600; /* 字体加粗 */
+    color: #334155; /* 字体颜色 */
+    margin: 1.25rem 0; /* 外边距 */
+}
+#content h3 {
+    font-size: 1.25rem; /* 三级标题字体大小 */
+    font-weight: 500; /* 字体加粗 */
+    color: #334155; /* 字体颜色 */
+    margin: 1rem 0; /* 外边距 */
+}
+#content p {
+    font-size: 1rem; /* 段落字体大小 */
+    line-height: 1.75rem; /* 行高 */
+    color: #475569; /* 字体颜色 */
+    margin: 1rem 0; /* 外边距 */
+}
+#content a {
+    color: #3b82f6; /* 链接颜色 */
+    transition: color 0.2s; /* 平滑动画 */
+}
+#content a:hover {
+    color: #1d4ed8; /* 鼠标悬停时的链接颜色 */
+}
+
+/* 代码块样式 */
+#content pre {
+    background: #FaFaFa;
+    color: #333;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 1.5rem 0;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* 行内代码样式 */
+#content code:not(pre code) {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+}
+/* 其他 Markdown 元素样式 */
+#content table {
+    width: 100%; /* 表格宽度 */
+    border-collapse: collapse; /* 合并边框 */
+    margin: 1.5rem 0; /* 外边距 */
+    font-size: 0.875rem; /* 字体大小 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* 阴影效果 */
+    border-radius: 8px; /* 圆角样式 */
+    overflow: hidden; /* 隐藏溢出内容 */
+}
+#content th, #content td {
+    border: 1px solid #e2e8f0; /* 边框颜色 */
+    padding: 0.75rem; /* 内边距 */
+    text-align: left; /* 左对齐 */
+}
+#content th {
+    background: linear-gradient(to bottom, #f1f5f9, #e2e8f0); /* 背景渐变 */
+    font-weight: 600; /* 字体加粗 */
+    color: #334155; /* 字体颜色 */
+}
+#content td {
+    color: #475569; /* 字体颜色 */
+}
+#content blockquote {
+    border-left: 4px solid #22c55e; /* 左边框颜色 */
+    background-color: #f0fdf4; /* 背景颜色 */
+    padding: 1rem; /* 内边距 */
+    margin: 1.5rem 0; /* 外边距 */
+    color: #475569; /* 字体颜色 */
+    border-radius: 8px; /* 圆角样式 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 阴影效果 */
+    transition: transform 0.3s ease; /* 平滑动画 */
+}
+#content blockquote:hover {
+    transform: translateX(5px); /* 鼠标悬停时的位移效果 */
+}
+#content ul, #content ol {
+    padding-left: 1.5rem; /* 内边距 */
+    margin: 1rem 0; /* 外边距 */
+}
+#content ul {
+    list-style-type: disc; /* 列表样式 */
+}
+#content ol {
+    list-style-type: decimal; /* 列表样式 */
+}
+#toc a {
+    transition: color 0.2s; /* 平滑动画 */
+}
+#toc a:hover {
+    color: #3b82f6; /* 鼠标悬停时的链接颜色 */
+}
+
+/* 手机端阅读优化 */
+@media (max-width: 768px) {
+    #content h1 {
+        font-size: 1.5rem; /* 一级标题字体大小 */
+        margin: 1rem 0; /* 外边距 */
+        padding-bottom: 0.3rem; /* 内边距 */
+    }
+    #content h2 {
+        font-size: 1.25rem; /* 二级标题字体大小 */
+        margin: 0.75rem 0; /* 外边距 */
+    }
+    #content h3 {
+        font-size: 1.1rem; /* 三级标题字体大小 */
+        margin: 0.5rem 0; /* 外边距 */
+    }
+    #content p {
+        font-size: 0.95rem; /* 段落字体大小 */
+        line-height: 1.6rem; /* 行高 */
+        margin: 0.75rem 0; /* 外边距 */
+    }
+    #content pre {
+        padding: 1rem; /* 减小内边距以适应小屏幕 */
+        font-size: 0.85rem; /* 稍小字体 */
+    }
+    #content table {
+        font-size: 0.8rem; /* 表格字体大小 */
+    }
+    #content th, #content td {
+        padding: 0.5rem; /* 内边距 */
+    }
+    #content blockquote {
+        padding: 0.75rem; /* 内边距 */
+        margin: 1rem 0; /* 外边距 */
+    }
+    #content ul, #content ol {
+        padding-left: 1.25rem; /* 内边距 */
+        margin: 0.75rem 0; /* 外边距 */
+    }
+}
+/* 基础样式 */
+html, body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+}
+
+/* 触发点和切换按钮样式优化 */
+#menu-toggle, #toc-toggle, #menu-trigger, #toc-trigger {
+    border: none; /* 去除按钮边框 */
+    transition: all 0.3s ease; /* 平滑过渡效果 */
+}
+#menu-toggle svg, #toc-toggle svg, #menu-trigger svg, #toc-trigger svg {
+    stroke: white; /* 设置图标颜色为白色 */
+    transition: transform 0.3s ease; /* 图标旋转动画 */
+}
+#menu-toggle:hover, #toc-toggle:hover, #menu-trigger:hover, #toc-trigger:hover {
+    background: linear-gradient(to right, #3b82f6, #1d4ed8); /* 鼠标悬停时的渐变背景 */
+    transform: translateY(-2px); /* 悬停时上移效果 */
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3); /* 增强阴影 */
+}
+#menu-toggle:active, #toc-toggle:active, #menu-trigger:active, #toc-trigger:active {
+    transform: scale(0.95); /* 点击时缩小按钮 */
+}
+
+/* 手机端样式 */
+@media (max-width: 768px) {
+    /* 左侧导航栏 */
+    #sidebar {
+        transform: translateX(-100%); /* 初始隐藏导航栏 */
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* 平滑动画 */
+        position: fixed; /* 固定位置 */
+        top: 0;
+        height: 100%; /* 占满屏幕高度 */
+        z-index: 50; /* 设置层级 */
+        width: 85%; /* 宽度为屏幕的 85% */
+        max-width: 280px; /* 最大宽度为 280px */
+        border-radius: 0 16px 16px 0; /* 增大圆角样式 */
+        background: linear-gradient(145deg, #ffffff, #f8fafc); /* 调整背景渐变 */
+        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    }
+    #sidebar.open {
+        transform: translateX(0); /* 打开导航栏 */
+    }
+    #menu-toggle {
+        display: block; /* 显示菜单按钮 */
+    }
+
+    /* 右侧目录 */
+    #toc {
+        position: fixed; /* 固定位置 */
+        right: 0;
+        top: 0;
+        width: 85%; /* 宽度为屏幕的 85% */
+        max-width: 280px; /* 最大宽度为 280px */
+        height: 100%; /* 占满屏幕高度 */
+        transform: translateX(100%); /* 初始隐藏目录 */
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* 平滑动画 */
+        z-index: 50; /* 设置层级 */
+        border-radius: 16px 0 0 16px; /* 增大圆角样式 */
+        background: linear-gradient(145deg, #ffffff, #f8fafc); /* 调整背景渐变 */
+        box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+    }
+    #toc.open {
+        transform: translateX(0); /* 打开目录 */
+    }
+    #toc-toggle {
+        display: block; /* 显示目录按钮 */
+    }
+
+    /* 触发点初始显示 */
+    #menu-trigger, #toc-trigger {
+        display: block; /* 显示触发按钮 */
+    }
+
+    /* 优化目录和导航栏内容的样式 */
+    #sidebar-content, #toc-content {
+        padding: 0.75rem; /* 增加内边距 */
+    }
+    #sidebar-content a, #toc-content a {
+        font-size: 0.95rem; /* 增大字体大小 */
+        line-height: 1.6rem; /* 增加行高 */
+        padding: 0.6rem; /* 增加内边距 */
+        border-radius: 10px; /* 增大圆角样式 */
+        transition: all 0.3s ease; /* 添加过渡效果 */
+    }
+    #sidebar-content ul.hidden {
+        display: none; /* 隐藏子菜单 */
+    }
+
+    /* 调整标题样式 */
+    #sidebar h2, #toc h2 {
+        font-size: 1rem; /* 标题字体大小 */
+        padding: 0.5rem; /* 内边距 */
+        margin-top: 0.5rem; /* 顶部外边距 */
+        background: linear-gradient(to right, #eff6ff, #dbeafe); /* 背景渐变 */
+        border-radius: 8px; /* 圆角样式 */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 阴影效果 */
+    }
+    #sidebar h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1rem;
+    }
+
+    /* 调整内容区 */
+    #content {
+        padding: 1rem; /* 内边距 */
+    }
+
+    /* 确保内容区不被遮挡 */
+    main {
+        transition: margin-left 0.3s ease, margin-right 0.3s ease, filter 0.3s ease; /* 平滑动画 */
+    }
+    #sidebar.open ~ main, #toc.open ~ main {
+        margin-left: 0; /* 重置左边距 */
+        margin-right: 0; /* 重置右边距 */
+        filter: blur(2px); /* 模糊效果 */
+    }
+}
+
+/* Markdown 样式优化 */
+#content h1 {
+    font-size: 1.875rem; /* 一级标题字体大小 */
+    font-weight: 700; /* 字体加粗 */
+    color: #1e293b; /* 字体颜色 */
+    margin: 1.5rem 0; /* 外边距 */
+    border-bottom: 2px solid #e2e8f0; /* 底部边框 */
+    padding-bottom: 0.5rem; /* 内边距 */
+    position: relative; /* 相对定位 */
+}
+#content h1::after {
+    content: ''; /* 添加伪元素 */
+    position: absolute; /* 绝对定位 */
+    bottom: -2px; /* 距离底部 */
+    left: 0; /* 距离左侧 */
+    width: 50px; /* 初始宽度 */
+    height: 2px; /* 高度 */
+    background: linear-gradient(to right, #3b82f6, #1d4ed8); /* 背景渐变 */
+    transition: width 0.3s ease; /* 平滑动画 */
+}
+#content h1:hover::after {
+    width: 100px; /* 鼠标悬停时宽度增加 */
+}
+#content h2 {
+    font-size: 1.5rem; /* 二级标题字体大小 */
+    font-weight: 600; /* 字体加粗 */
+    color: #334155; /* 字体颜色 */
+    margin: 1.25rem 0; /* 外边距 */
+}
+#content h3 {
+    font-size: 1.25rem; /* 三级标题字体大小 */
+    font-weight: 500; /* 字体加粗 */
+    color: #334155; /* 字体颜色 */
+    margin: 1rem 0; /* 外边距 */
+}
+#content p {
+    font-size: 1rem; /* 段落字体大小 */
+    line-height: 1.75rem; /* 行高 */
+    color: #475569; /* 字体颜色 */
+    margin: 1rem 0; /* 外边距 */
+}
+#content a {
+    color: #3b82f6; /* 链接颜色 */
+    transition: color 0.2s; /* 平滑动画 */
+}
+#content a:hover {
+    color: #1d4ed8; /* 鼠标悬停时的链接颜色 */
+}
+
+/* 代码块样式 */
+#content pre {
+    background: #FaFaFa;
+    color: #333;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 1.5rem 0;
+    white-space: pre-wrap;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* 行内代码样式 */
+#content code:not(pre code) {
+    background-color: #f1f5f9;
+    color: #1e293b;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+}
+/* 其他 Markdown 元素样式 */
+#content table {
+    width: 100%; /* 表格宽度 */
+    border-collapse: collapse; /* 合并边框 */
+    margin: 1.5rem 0; /* 外边距 */
+    font-size: 0.875rem; /* 字体大小 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* 阴影效果 */
+    border-radius: 8px; /* 圆角样式 */
+    overflow: hidden; /* 隐藏溢出内容 */
+}
+#content th, #content td {
+    border: 1px solid #e2e8f0; /* 边框颜色 */
+    padding: 0.75rem; /* 内边距 */
+    text-align: left; /* 左对齐 */
+}
+#content th {
+    background: linear-gradient(to bottom, #f1f5f9, #e2e8f0); /* 背景渐变 */
+    font-weight: 600; /* 字体加粗 */
+    color: #334155; /* 字体颜色 */
+}
+#content td {
+    color: #475569; /* 字体颜色 */
+}
+#content blockquote {
+    border-left: 4px solid #22c55e; /* 左边框颜色 */
+    background-color: #f0fdf4; /* 背景颜色 */
+    padding: 1rem; /* 内边距 */
+    margin: 1.5rem 0; /* 外边距 */
+    color: #475569; /* 字体颜色 */
+    border-radius: 8px; /* 圆角样式 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 阴影效果 */
+    transition: transform 0.3s ease; /* 平滑动画 */
+}
+#content blockquote:hover {
+    transform: translateX(5px); /* 鼠标悬停时的位移效果 */
+}
+#content ul, #content ol {
+    padding-left: 1.5rem; /* 内边距 */
+    margin: 1rem 0; /* 外边距 */
+}
+#content ul {
+    list-style-type: disc; /* 列表样式 */
+}
+#content ol {
+    list-style-type: decimal; /* 列表样式 */
+}
+#toc a {
+    transition: color 0.2s; /* 平滑动画 */
+}
+#toc a:hover {
+    color: #3b82f6; /* 鼠标悬停时的链接颜色 */
+}
+
+/* 手机端阅读优化 */
+@media (max-width: 768px) {
+    #content h1 {
+        font-size: 1.5rem; /* 一级标题字体大小 */
+        margin: 1rem 0; /* 外边距 */
+        padding-bottom: 0.3rem; /* 内边距 */
+    }
+    #content h2 {
+        font-size: 1.25rem; /* 二级标题字体大小 */
+        margin: 0.75rem 0; /* 外边距 */
+    }
+    #content h3 {
+        font-size: 1.1rem; /* 三级标题字体大小 */
+        margin: 0.5rem 0; /* 外边距 */
+    }
+    #content p {
+        font-size: 0.95rem; /* 段落字体大小 */
+        line-height: 1.6rem; /* 行高 */
+        margin: 0.75rem 0; /* 外边距 */
+    }
+    #content pre {
+        padding: 1rem; /* 减小内边距以适应小屏幕 */
+        font-size: 0.85rem; /* 稍小字体 */
+    }
+    #content table {
+        font-size: 0.8rem; /* 表格字体大小 */
+    }
+    #content th, #content td {
+        padding: 0.5rem; /* 内边距 */
+    }
+    #content blockquote {
+        padding: 0.75rem; /* 内边距 */
+        margin: 1rem 0; /* 外边距 */
+    }
+    #content ul, #content ol {
+        padding-left: 1.25rem; /* 内边距 */
+        margin: 0.75rem 0; /* 外边距 */
+    }
+}
+/* 固定导航栏和侧边栏布局 */
+#top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+#sidebar {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    overflow-y: auto;
+    z-index: 90;
+}
+
+#toc {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    bottom: 0;
+    width: 280px;
+    overflow-y: auto;
+    z-index: 90;
+}
+
+/* 确保内容区域可滚动且不被遮挡 */
+#content {
+    position: fixed;
+    top: 64px;
+    left: 280px;
+    right: 280px;
+    bottom: 0;
+    overflow-y: auto;
+    padding: 2rem;
+    background-color: #f8fafc;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    #content {
+        left: 0;
+        right: 0;
+    }
+}
+
+#content.no-animation * {
+    transition: none !important; /* 滚动时禁用动画 */
+}

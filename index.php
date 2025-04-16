@@ -1,0 +1,72 @@
+<?php
+require_once('WxqqJump/WxqqJump.php');
+
+
+?>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单WIKI</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@latest/dist/purify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap&_cacheOverride=1744614634958" rel="stylesheet">
+    <link href="css/wiki.css" rel="stylesheet">
+    <script src="js/app.js"></script>
+</head>
+<body class="bg-gray-50">
+    <header id="top-nav" class="fixed top-0 left-0 right-0 bg-white shadow-md z-50 px-4 py-3">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <button id="mobile-menu-btn" class="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors duration-300">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <div id="header-logo"></div>
+            </div>
+            <div class="flex items-center space-x-5" id="header-buttons"></div>
+        </div>
+    </header>
+
+    <button id="menu-trigger" class="fixed top-4 left-4 z-50 p-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 md:hidden">
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+    </button>
+
+
+    <button id="toc-trigger" class="fixed top-4 right-4 z-50 p-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 md:hidden">
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+    </button>
+
+    <div class="flex h-screen">
+        <nav id="sidebar" class="w-64 bg-white border-r border-gray-200 overflow-y-auto h-full p-4 shadow-lg">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-xl font-semibold text-gray-800">EasyWIKI</h1>
+                <button id="menu-toggle" class="p-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 md:hidden">
+                    <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="sidebar-content" class="space-y-1"></div>
+        </nav>
+        <main id="content" class="flex-1 p-8 overflow-y-auto transition-all duration-300"></main>
+        <aside id="toc" class="w-64 bg-white border-l border-gray-200 p-4 overflow-y-auto h-full shadow-lg">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-base font-medium text-gray-700">目录</h2>
+                <button id="toc-toggle" class="p-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 md:hidden">
+                    <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+            <div id="toc-content" class="space-y-1"></div>
+        </aside>
+    </div>
+</body>
+</html>

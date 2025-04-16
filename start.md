@@ -7,16 +7,19 @@
 |------------------------------|-----------------------------------|------------------------------------|
 | 版本                         |          v1.0                        |     v1.0                               |
 | 未来是否会更新                         |          暂时没打算                         |              是                      |
-| 是否有WX|QQ自动防红                     |           否                        |                          是           |
+| 是否有WX QQ自动防红                     |           否                        |                          是           |
 
-> **注意**：我们更加推荐您使用PHP版本，因为PHP版本会持续更新，并且PHP版本有WX|QQ自动防红功能。
+> **注意**：我们更加推荐您使用PHP版本,除开某些不适用的情况，请自行选择。
 
 ---
 
 ## 2.下载
 您可以访问我们的github仓库，下载我们的代码。或者点击下面的链接下载v1.0.0版本。
 
-[Github] (https://github.com/SnowBall-Bqiu/easywiki)
+[Github](https://github.com/SnowBall-Bqiu/easywiki/releases/tag/v1.0.0)
+
+[下载链接（PHP版本）](/download/v1.0.0.tar.gz)
+
 
 ---
 ## 3.部署
@@ -27,19 +30,19 @@
 ### 3.2 PHP部署
 这里我们使用宝塔举例，您也可以使用其他面板。
 1. 首先您需要安装PHP环境，如果您没有安装PHP环境，您可以使用宝塔的安装PHP环境功能。
-![alt text](image.png)
+![alt text](image.webp)
 这里您可以选择编译安装或者是急速安装。
 2. 安装Web服务器。
-![NG](image-1.png)
+![NG](image-1.webp)
 这里我们使用NGINX。因为我们目前已经安装好了，就不展示了。
 3. 创建网站
-![alt text](image-2.png)
+![alt text](image-2.webp)
 这里我们创建了一个网站，填写好您的域名，选择好PHP版本就可以了。
 4. 配置网站
 
-![alt text](image-3.png)
+![alt text](image-3.webp)
 点击网站根目录，来到根目录。
-![alt text](image-4.png)
+![alt text](image-4.webp)
 上传项目文件
 访问您设置的域名即可使用！
-![alt text](image-5.png)
+![alt text](image-5.webp)
