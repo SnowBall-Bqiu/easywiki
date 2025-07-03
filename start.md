@@ -18,7 +18,7 @@
 
 [Github](https://github.com/SnowBall-Bqiu/easywiki/releases/tag/v1.0.0)
 
-[下载链接（PHP版本）](/download/v1.0.0.tar.gz)
+[下载链接（PHP版本）](./download/v1.0.0.tar.gz)
 
 
 ---
@@ -30,19 +30,19 @@
 ### 3.2 PHP部署
 这里我们使用宝塔举例，您也可以使用其他面板。
 1. 首先您需要安装PHP环境，如果您没有安装PHP环境，您可以使用宝塔的安装PHP环境功能。
-![alt text](image.webp)
+![alt text](./image.webp)
 这里您可以选择编译安装或者是急速安装。
 2. 安装Web服务器。
-![NG](image-1.webp)
+![NG](./image-1.webp)
 这里我们使用NGINX。因为我们目前已经安装好了，就不展示了。
 3. 创建网站
-![alt text](image-2.webp)
+![alt text](./image-2.webp)
 这里我们创建了一个网站，填写好您的域名，选择好PHP版本就可以了。
 4. 配置网站
 
-![alt text](image-3.webp)
+![alt text](./image-3.webp)
 点击网站根目录，来到根目录。
-![alt text](image-4.webp)
+![alt text](./image-4.webp)
 上传项目文件
 访问您设置的域名即可使用！
-![alt text](image-5.webp)
+![alt text](./image-5.webp)
