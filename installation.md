@@ -25,10 +25,10 @@ npm run dev
 ## tailwindcss的相关开发配置
 **我们已经创建了标准的tailwindcss配置文件，无需手动配置。您可以点击这个链接前往Github进行下载tailwind.config.js：**
 
-[github](https://github.com/SnowBall-Bqiu/easywiki/releases/download/v1.0.0)
+[github](https://github.com/SnowBall-Bqiu/easywiki/releases)
 
 > 您只需要将下载的文件复制到您的项目根目录，安装好需要的项目即可。
 --- 
 **完整的开发环境请下载easywiki-vx.x.x-dev.7z**
 
-[完整开发环境](https://github.com/SnowBall-Bqiu/easywiki/releases/tag/v1.0.0)
+[完整开发环境](https://github.com/SnowBall-Bqiu/easywiki/releases)
